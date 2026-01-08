@@ -2,9 +2,8 @@ name: Daily Panchang Mailer
 
 on:
   schedule:
-    # Runs at 12:00 UTC daily (which is 6:00 AM CST)
     - cron: '0 12 * * *'
-  workflow_dispatch: # Allows manual triggering
+  workflow_dispatch:
 
 jobs:
   run-mailer:
@@ -14,19 +13,32 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    - name: List all files (DEBUG)
+      run: |
+        echo "Current directory: $(pwd)"
+        ls -R
+
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.9'
 
-    - name: Install Chrome and ChromeDriver
+    - name: Install Chrome
       run: |
         sudo apt-get update
         sudo apt-get install -y google-chrome-stable
 
     - name: Install dependencies
       run: |
-        pip install -r requirements.txt
+        # Try to find requirements.txt wherever it is
+        if [ -f "requirements.txt" ]; then
+          pip install -r requirements.txt
+        elif [ -f "panchang_mailer/requirements.txt" ]; then
+          pip install -r panchang_mailer/requirements.txt
+        else
+          echo "requirements.txt not found!"
+          exit 1
+        fi
 
     - name: Run Mailer Script
       env:
@@ -34,4 +46,13 @@ jobs:
         SENDER_PASSWORD: ${{ secrets.SENDER_PASSWORD }}
         TO_EMAIL: ${{ secrets.TO_EMAIL }}
       run: |
-        python panchang_mailer/src/main.py --now
+        # Try to run main.py wherever it is
+        if [ -f "src/main.py" ]; then
+          python src/main.py --now
+        elif [ -f "panchang_mailer/src/main.py" ]; then
+          cd panchang_mailer
+          python src/main.py --now
+        else
+          echo "main.py not found!"
+          exit 1
+        fi
