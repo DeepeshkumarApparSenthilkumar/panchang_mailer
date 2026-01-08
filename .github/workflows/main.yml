@@ -13,11 +13,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: List all files (DEBUG)
-      run: |
-        echo "Current directory: $(pwd)"
-        ls -R
-
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
@@ -30,15 +25,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        # Try to find requirements.txt wherever it is
-        if [ -f "requirements.txt" ]; then
-          pip install -r requirements.txt
-        elif [ -f "panchang_mailer/requirements.txt" ]; then
-          pip install -r panchang_mailer/requirements.txt
-        else
-          echo "requirements.txt not found!"
-          exit 1
-        fi
+        pip install -r requirements.txt
 
     - name: Run Mailer Script
       env:
@@ -46,13 +33,4 @@ jobs:
         SENDER_PASSWORD: ${{ secrets.SENDER_PASSWORD }}
         TO_EMAIL: ${{ secrets.TO_EMAIL }}
       run: |
-        # Try to run main.py wherever it is
-        if [ -f "src/main.py" ]; then
-          python src/main.py --now
-        elif [ -f "panchang_mailer/src/main.py" ]; then
-          cd panchang_mailer
-          python src/main.py --now
-        else
-          echo "main.py not found!"
-          exit 1
-        fi
+        python main.py --now
