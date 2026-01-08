@@ -34,4 +34,4 @@ jobs:
         SENDER_PASSWORD: ${{ secrets.SENDER_PASSWORD }}
         TO_EMAIL: ${{ secrets.TO_EMAIL }}
       run: |
-        python src/main.py --now
+        python panchang_mailer/src/main.py --now
