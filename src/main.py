@@ -29,7 +29,7 @@ def job():
     if "SENDER_PASSWORD" not in os.environ:
         print("Error: SENDER_PASSWORD environment variable is not set.")
         print("Please set it using: $env:SENDER_PASSWORD='your_app_password'")
-        return
+        sys.exit(1)
 
     # 1. Fetch Data
     print("Fetching HTML...")
@@ -39,13 +39,13 @@ def job():
     print("Parsing HTML...")
     if not os.path.exists(HTML_FILE):
         print(f"Error: {HTML_FILE} not found.")
-        return
+        sys.exit(1)
         
     try:
         data = parse_panchang(HTML_FILE)
     except Exception as e:
         print(f"Error parsing HTML: {e}")
-        return
+        sys.exit(1)
         
     # 3. Format Email
     print("Formatting email...")
