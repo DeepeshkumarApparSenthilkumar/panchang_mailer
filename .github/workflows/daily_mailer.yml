@@ -2,8 +2,9 @@ name: Daily Panchang Mailer
 
 on:
   schedule:
+    # Runs at 12:00 UTC daily (which is 6:00 AM CST)
     - cron: '0 12 * * *'
-  workflow_dispatch:
+  workflow_dispatch: # Allows manual triggering
 
 jobs:
   run-mailer:
@@ -18,10 +19,11 @@ jobs:
       with:
         python-version: '3.9'
 
-    - name: Install Chrome
+    - name: Install Chrome and ChromeDriver
       run: |
         sudo apt-get update
         sudo apt-get install -y google-chrome-stable
+        # ChromeDriver is often managed by webdriver-manager, but installing chrome is key
 
     - name: Install dependencies
       run: |
@@ -33,4 +35,4 @@ jobs:
         SENDER_PASSWORD: ${{ secrets.SENDER_PASSWORD }}
         TO_EMAIL: ${{ secrets.TO_EMAIL }}
       run: |
-        python main.py --now
+        python src/main.py --now
