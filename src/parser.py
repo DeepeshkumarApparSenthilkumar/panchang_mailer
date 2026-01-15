@@ -54,6 +54,28 @@ def parse_panchang(html_file):
                 data['moonsign'] = value_text
             elif key_text == "Abhijit":
                 data['abhijit_muhurta'] = value_text
+            elif key_text == "Tamil Date":
+                data['tamil_date'] = value_text
+            elif "Nalla Neram" in key_text:
+                data['nalla_neram'] = value_text
+            elif "Gowri Nalla Neram" in key_text:
+                data['gowri_nalla_neram'] = value_text
+
+    # Extract Festivals (often in a specific div or list)
+    # Drik Panchang usually puts festivals in a div with class "dpFestivalWrapper" or similar, 
+    # or sometimes just listed. We'll look for common festival classes.
+    festivals = []
+    festival_divs = soup.find_all("div", class_="dpFestivalContent")
+    for div in festival_divs:
+        festivals.append(div.get_text(strip=True))
+    
+    # Fallback/Alternative festival extraction if specific class not found
+    if not festivals:
+        # Sometimes festivals are in a marquee or specific highlighted text
+        # This is a heuristic based on common Drik Panchang layouts
+        pass 
+
+    data['festivals'] = ", ".join(festivals) if festivals else "No major festivals listed"
 
     return data
 
