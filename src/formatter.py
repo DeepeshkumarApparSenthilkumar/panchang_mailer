@@ -3,28 +3,28 @@ def format_panchang_html(data):
     <html>
     <head>
         <style>
-            body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333; background-color: #f4f4f4; padding: 20px; }
-            .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; }
-            .header { background: linear-gradient(135deg, #d35400, #e67e22); color: white; padding: 20px; text-align: center; }
-            .header h2 { margin: 0; font-size: 24px; }
-            .header .date { font-size: 16px; margin-top: 5px; opacity: 0.9; }
-            .content { padding: 20px; }
+            body {{ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333; background-color: #f4f4f4; padding: 20px; }}
+            .container {{ max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; }}
+            .header {{ background: linear-gradient(135deg, #d35400, #e67e22); color: white; padding: 20px; text-align: center; }}
+            .header h2 {{ margin: 0; font-size: 24px; }}
+            .header .date {{ font-size: 16px; margin-top: 5px; opacity: 0.9; }}
+            .content {{ padding: 20px; }}
             
-            .section-title { color: #d35400; font-size: 18px; margin-top: 20px; margin-bottom: 10px; border-bottom: 2px solid #eee; padding-bottom: 5px; }
+            .section-title {{ color: #d35400; font-size: 18px; margin-top: 20px; margin-bottom: 10px; border-bottom: 2px solid #eee; padding-bottom: 5px; }}
             
-            .festival-box { background-color: #fff3cd; border-left: 5px solid #ffc107; padding: 15px; margin-bottom: 20px; border-radius: 4px; }
-            .festival-title { font-weight: bold; color: #856404; font-size: 16px; }
+            .festival-box {{ background-color: #fff3cd; border-left: 5px solid #ffc107; padding: 15px; margin-bottom: 20px; border-radius: 4px; }}
+            .festival-title {{ font-weight: bold; color: #856404; font-size: 16px; }}
             
-            table { width: 100%; border-collapse: collapse; margin-bottom: 15px; }
-            th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #f0f0f0; }
-            th { background-color: #f9f9f9; color: #7f8c8d; width: 40%; font-weight: 600; }
-            td { color: #2c3e50; }
+            table {{ width: 100%; border-collapse: collapse; margin-bottom: 15px; }}
+            th, td {{ padding: 12px 15px; text-align: left; border-bottom: 1px solid #f0f0f0; }}
+            th {{ background-color: #f9f9f9; color: #7f8c8d; width: 40%; font-weight: 600; }}
+            td {{ color: #2c3e50; }}
             
-            .highlight { color: #e67e22; font-weight: bold; }
-            .auspicious { color: #27ae60; font-weight: bold; }
-            .inauspicious { color: #c0392b; }
+            .highlight {{ color: #e67e22; font-weight: bold; }}
+            .auspicious {{ color: #27ae60; font-weight: bold; }}
+            .inauspicious {{ color: #c0392b; }}
             
-            .footer { background-color: #f9f9f9; padding: 15px; text-align: center; font-size: 12px; color: #999; border-top: 1px solid #eee; }
+            .footer {{ background-color: #f9f9f9; padding: 15px; text-align: center; font-size: 12px; color: #999; border-top: 1px solid #eee; }}
         </style>
     </head>
     <body>
