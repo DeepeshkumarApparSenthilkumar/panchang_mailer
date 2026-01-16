@@ -1,5 +1,5 @@
 def format_panchang_html(data):
-    """
+    html = f"""
     <html>
     <head>
         <style>
